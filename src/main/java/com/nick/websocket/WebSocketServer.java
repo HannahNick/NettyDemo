@@ -34,7 +34,7 @@ public class WebSocketServer {
 
     public void run() throws InterruptedException {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
-        NioEventLoopGroup workerGroup = new NioEventLoopGroup();
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
 
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap()
