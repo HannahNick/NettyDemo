@@ -47,6 +47,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter implements 
     @Override
     public synchronized void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println("channelRead 被调用");
+        System.out.println("Handler,channelRead线程名----------------->>>>>"+Thread.currentThread().getName());
         result = msg.toString();
         //唤醒等待的线程
         notify();
@@ -67,6 +68,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter implements 
     @Override
     public synchronized Object call() throws Exception {
         System.out.println("call1 被调用");
+        System.out.println("Handler,call线程名----------------->>>>>"+Thread.currentThread().getName());
         context.writeAndFlush(para);
         //进行wait
         //等待channelRed 方法获取到服务器的结果后，唤醒
